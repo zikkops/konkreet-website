@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* Design tokens lifted from the original Elementor kit (:root of post-5.css). */
+@theme {
+  --color-primary: rgba(23, 73, 81, 0.96);
+  --color-primary-tint: rgba(23, 73, 81, 0.88);
+  --color-hairline: rgba(23, 73, 81, 0.18);
+  --color-cream: #dbd9cb;
+  --color-copper: #c77f4f;
+  --color-ink: #14282b;
+  --color-panel: rgba(244, 242, 234, 0.94);
+  --color-on-dark: #ffffffd1;
+  --color-page: #f4f2ea;
+
+  --font-sans: var(--font-raleway), "Raleway", sans-serif;
+}
+
+:root {
+  /* Horizontal page gutter: 76px on the content sections, 96px on the
+     header / closing / footer bands, matching the source. */
+  --gutter: clamp(20px, 6vw, 76px);
+  --gutter-wide: clamp(20px, 7vw, 96px);
+  --section-y: clamp(64px, 9vw, 120px);
+}
+
+body {
+  background-color: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Display headings share one set of metrics in the source:
+   Raleway 700, letter-spacing -0.06em, line-height 0.92. */
+@utility display {
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.92em;
+}
+
+/* Small uppercase eyebrow label above section titles. */
+@utility eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* The 50px copper rule that precedes every eyebrow. */
+@utility rule {
+  display: block;
+  width: 50px;
+  height: 0;
+  border-top: 1px solid var(--color-copper);
+  flex: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Sticky header height, so anchor targets are not hidden beneath it. */
+  scroll-padding-top: 70px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
