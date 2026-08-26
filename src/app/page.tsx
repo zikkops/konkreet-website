@@ -1,4 +1,5 @@
 import { About } from "@/components/About";
+import { BackToProjects } from "@/components/BackToProjects";
 import { Closing } from "@/components/Closing";
 import { Expertise } from "@/components/Expertise";
 import { Header } from "@/components/Header";
@@ -43,6 +44,8 @@ export default function Home() {
 
         <Closing />
       </main>
+
+      <BackToProjects />
     </>
   );
 }

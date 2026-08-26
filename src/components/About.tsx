@@ -12,7 +12,7 @@ export function About() {
       <div className="relative p-[10px] lg:w-[37%]">
         <Image
           src={about.primaryImage}
-          alt="Construction site under execution"
+          alt="Concrete pour into wall formwork on a Konkreet site"
           width={407}
           height={470}
           className="h-[470px] w-full max-w-[407px] object-cover"
@@ -21,7 +21,7 @@ export function About() {
         <div className="bottom-[53px] right-0 hidden bg-white p-5 lg:absolute lg:block">
           <Image
             src={about.insetImage}
-            alt="Structural detail on site"
+            alt="Boiler room with completed pipework and plant"
             width={244}
             height={284}
             className="h-[284px] w-[244px] object-cover"

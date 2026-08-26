@@ -53,8 +53,8 @@ export const about = {
     'Quality Control',
     'Delivery Efficiency',
   ],
-  primaryImage: '/images/photo-1504917595217-d4dc5ebe6122.avif',
-  insetImage: '/images/photo-1518005020951-eccb494ad742.avif',
+  primaryImage: '/images/about/primary.webp',
+  insetImage: '/images/about/inset.webp',
 };
 
 export const method = {
@@ -86,9 +86,21 @@ export const method = {
 };
 
 export const imageBand = [
-  { src: '/images/photo-1541888946425-d81bb19240f5-1024x682.avif', width: '50%' },
-  { src: '/images/photo-1581094794329-c8112a89af12-683x1024.avif', width: '30%' },
-  { src: '/images/photo-1504917595217-d4dc5ebe6122-1024x683.avif', width: '40%' },
+  {
+    src: '/images/about/band-1.webp',
+    width: '50%',
+    alt: 'Reinforcement mesh laid out across a raft foundation before the pour',
+  },
+  {
+    src: '/images/about/band-2.webp',
+    width: '30%',
+    alt: 'Completed commercial kitchen with stainless equipment in place',
+  },
+  {
+    src: '/images/about/band-3.webp',
+    width: '40%',
+    alt: 'Rendered street elevation of a delivered residential building',
+  },
 ];
 
 export const expertise = {
@@ -147,6 +159,16 @@ export const projectGroups: ProjectGroup[] = [
         "image": "/images/projects/faqra-club-371/cover.webp"
       },
       {
+        "title": "Bayada Apartment",
+        "role": "Management & Contracting",
+        "image": "/images/Copy-of-2-1024x768.jpg"
+      },
+      {
+        "title": "Downtown Apartment",
+        "role": "Interior Execution & Coordination",
+        "image": "/images/projects/downtown-apartment/cover.webp"
+      },
+      {
         "title": "Park Tower Suites Hotel - Achrafieh",
         "role": "Renovation, Management, & Contracting",
         "image": "/images/Copy-of-IMG_7096-768x1024.jpg"
@@ -167,16 +189,6 @@ export const projectGroups: ProjectGroup[] = [
         "image": "/images/Copy-of-8-1024x768.jpg"
       },
       {
-        "title": "Bayada Apartment",
-        "role": "Management & Contracting",
-        "image": "/images/Copy-of-2-1024x768.jpg"
-      },
-      {
-        "title": "Maison Prunelle -\nDowntown",
-        "role": "Civil execution & Finishing",
-        "image": "/images/projects/maison-prunelle/cover.webp"
-      },
-      {
         "title": "Achrafieh Restaurant",
         "role": "Management & Contracting",
         "image": "/images/Copy-of-5-1-768x1024.jpg"
@@ -185,42 +197,6 @@ export const projectGroups: ProjectGroup[] = [
         "title": "BRGRCo",
         "role": "Execution & Coordination",
         "image": "/images/projects/brgrco/cover.webp"
-      },
-      {
-        "title": "Downtown Apartment",
-        "role": "Interior Execution & Coordination",
-        "image": "/images/projects/downtown-apartment/cover.webp"
-      }
-    ]
-  },
-  {
-    "heading": "Ongoing projects",
-    "intro": "Construction is actively underway across the following projects, each requiring close coordination and continuous site supervision. Through structured execution and engineering-led oversight, Konkreet guides every project toward successful delivery.",
-    "cards": [
-      {
-        "title": "Val De Neige –\nKfardebian 12746",
-        "role": "Management & Contracting",
-        "image": "/images/photo-1600607687939-ce8a6c25118c.avif"
-      },
-      {
-        "title": "Tilal el Aasal –\nKfardebian 13626",
-        "role": "Management & Contracting",
-        "image": "/images/projects/tilal-el-aasal-13626/cover.webp"
-      },
-      {
-        "title": "Tilal el Aasal –\nKfardebian 13624",
-        "role": "Management & Contracting",
-        "image": "/images/projects/tilal-el-aasal-13624/cover.webp"
-      },
-      {
-        "title": "Tilal el Aasal -\nKfardebian 6879",
-        "role": "Management & Contracting",
-        "image": "/images/projects/tilal-el-aasal-6879/cover.webp"
-      },
-      {
-        "title": "San Antonio –\nKfardebian 6507",
-        "role": "Management & Contracting",
-        "image": "/images/projects/san-antonio-6507/cover.webp"
       },
       {
         "title": "Iglu Restaurant – Mzaar",
@@ -236,6 +212,42 @@ export const projectGroups: ProjectGroup[] = [
         "title": "MAIA – Faqra Club",
         "role": "Execution & Coordination",
         "image": "/images/projects/maia/cover.webp"
+      },
+      {
+        "title": "Maison Prunelle -\nDowntown",
+        "role": "Civil execution & Finishing",
+        "image": "/images/projects/maison-prunelle/09.webp"
+      }
+    ]
+  },
+  {
+    "heading": "Ongoing projects",
+    "intro": "Construction is actively underway across the following projects, each requiring close coordination and continuous site supervision. Through structured execution and engineering-led oversight, Konkreet guides every project toward successful delivery.",
+    "cards": [
+      {
+        "title": "Val De Neige –\nKfardebian 12746",
+        "role": "Management & Contracting",
+        "image": null
+      },
+      {
+        "title": "Tilal El Aasal –\nKfardebian 13626",
+        "role": "Management & Contracting",
+        "image": "/images/projects/tilal-el-aasal-13626/cover.webp"
+      },
+      {
+        "title": "Tilal El Aasal –\nKfardebian 13624",
+        "role": "Management & Contracting",
+        "image": "/images/projects/tilal-el-aasal-13624/cover.webp"
+      },
+      {
+        "title": "Tilal El Aasal -\nKfardebian 6879",
+        "role": "Management & Contracting",
+        "image": "/images/projects/tilal-el-aasal-6879/cover.webp"
+      },
+      {
+        "title": "San Antonio –\nKfardebian 6507",
+        "role": "Management & Contracting",
+        "image": "/images/projects/san-antonio-6507/cover.webp"
       }
     ]
   },
@@ -283,6 +295,10 @@ export const projectGroups: ProjectGroup[] = [
 ]
 
 export const galleryCaption = 'Main image + supporting site / detail / finishing visuals';
+
+/** Anchor id for a profile section; the index cards link to these. */
+export const profileSlug = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 export const profiles: Profile[] = [
   {
@@ -408,17 +424,7 @@ export const profiles: Profile[] = [
     ],
     "gallery": [
       "/images/projects/faqra-9330/cover.webp",
-      "/images/projects/faqra-9330/01.webp",
-      "/images/projects/faqra-9330/02.webp",
-      "/images/projects/faqra-9330/03.webp",
-      "/images/projects/faqra-9330/04.webp",
-      "/images/projects/faqra-9330/05.webp",
-      "/images/projects/faqra-9330/06.webp",
-      "/images/projects/faqra-9330/07.webp",
-      "/images/projects/faqra-9330/08.webp",
-      "/images/projects/faqra-9330/09.webp",
-      "/images/projects/faqra-9330/10.webp",
-      "/images/projects/faqra-9330/11.webp"
+      "/images/projects/faqra-9330/01.webp"
     ]
   },
   {
@@ -461,16 +467,7 @@ export const profiles: Profile[] = [
     "gallery": [
       "/images/projects/tilal-el-aasal-9927/cover.webp",
       "/images/projects/tilal-el-aasal-9927/01.webp",
-      "/images/projects/tilal-el-aasal-9927/02.webp",
-      "/images/projects/tilal-el-aasal-9927/03.webp",
-      "/images/projects/tilal-el-aasal-9927/04.webp",
-      "/images/projects/tilal-el-aasal-9927/05.webp",
-      "/images/projects/tilal-el-aasal-9927/06.webp",
-      "/images/projects/tilal-el-aasal-9927/07.webp",
-      "/images/projects/tilal-el-aasal-9927/08.webp",
-      "/images/projects/tilal-el-aasal-9927/09.webp",
-      "/images/projects/tilal-el-aasal-9927/10.webp",
-      "/images/projects/tilal-el-aasal-9927/11.webp"
+      "/images/projects/tilal-el-aasal-9927/02.webp"
     ]
   },
   {
@@ -526,6 +523,79 @@ export const profiles: Profile[] = [
     ]
   },
   {
+    "label": "Project 10",
+    "group": "COMPLETED PROJECTS",
+    "title": "Bayada Apartment",
+    "description": "A residential apartment project focused on management, contracting, coordination, and quality-driven execution.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Management & Contracting"
+      },
+      {
+        "label": "Lead Oversight",
+        "value": "Mario Zgheib"
+      },
+      {
+        "label": "Project Type",
+        "value": "Residential Mountain Development"
+      },
+      {
+        "label": "Location",
+        "value": "Lebanon"
+      }
+    ],
+    "tags": [
+      "Site Supervision",
+      "Execution Follow-Up",
+      "Contractor Coordination",
+      "Quality Control"
+    ],
+    "gallery": [
+      "/images/1-2-1024x768.jpg",
+      "/images/3-2-1024x768.jpg",
+      "/images/5-2-768x1024.jpg",
+      "/images/2-2-768x1024.jpg",
+      "/images/4-3-768x1024.jpg"
+    ]
+  },
+  {
+    "label": "Project 23",
+    "group": "COMPLETED PROJECTS",
+    "title": "Downtown Apartment",
+    "description": "A Downtown residential project requiring interior execution management, contractor coordination, and supervision of finishing and delivery.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Interior Execution & Coordination"
+      },
+      {
+        "label": "Lead Oversight",
+        "value": "Konkreet by Mario Zgheib"
+      },
+      {
+        "label": "Project Type",
+        "value": "Residential Interior"
+      },
+      {
+        "label": "Location",
+        "value": "Lebanon"
+      }
+    ],
+    "tags": [
+      "Site Supervision",
+      "Execution Follow-Up",
+      "Contractor Coordination",
+      "Quality Control"
+    ],
+    "gallery": [
+      "/images/projects/downtown-apartment/cover.webp",
+      "/images/projects/downtown-apartment/01.webp",
+      "/images/projects/downtown-apartment/02.webp",
+      "/images/projects/downtown-apartment/03.webp"
+    ]
+  },
+  {
     "label": "Project 06",
     "group": "COMPLETED PROJECTS",
     "title": "Park Tower Suites Hotel - Achrafieh",
@@ -566,13 +636,9 @@ export const profiles: Profile[] = [
       "/images/1-1024x768.webp",
       "/images/3-768x1024.webp",
       "/images/5-768x1024.webp",
-      "/images/7-478x1024.jpg",
-      "/images/9-478x1024.jpg",
       "/images/2-768x1024.webp",
       "/images/4-768x1024.webp",
-      "/images/6-768x1024.webp",
-      "/images/8-478x1024.jpg",
-      "/images/10-478x1024.jpg"
+      "/images/6-768x1024.webp"
     ]
   },
   {
@@ -612,11 +678,7 @@ export const profiles: Profile[] = [
       "/images/1-1024x478.jpg",
       "/images/3-1024x478.jpg",
       "/images/5-768x1024.jpg",
-      "/images/7-1-1024x768.jpg",
-      "/images/2-1024x478.jpg",
-      "/images/4-768x1024.jpg",
-      "/images/6-1024x768.jpg",
-      "/images/8-1-768x1024.jpg"
+      "/images/2-1024x478.jpg"
     ]
   },
   {
@@ -703,95 +765,10 @@ export const profiles: Profile[] = [
       "/images/3-1-1024x768.jpg",
       "/images/5-1-1024x768.jpg",
       "/images/7-2-768x1024.jpg",
-      "/images/9-1-1024x768.jpg",
       "/images/2-1-768x1024.jpg",
       "/images/4-2-1024x768.jpg",
       "/images/6-1-1024x768.jpg",
-      "/images/8-2-768x1024.jpg",
-      "/images/10-1-1024x768.jpg"
-    ]
-  },
-  {
-    "label": "Project 10",
-    "group": "COMPLETED PROJECTS",
-    "title": "Bayada Apartment",
-    "description": "A residential apartment project focused on management, contracting, coordination, and quality-driven execution.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Management & Contracting"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Residential Mountain Development"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/1-2-1024x768.jpg",
-      "/images/3-2-1024x768.jpg",
-      "/images/5-2-768x1024.jpg",
-      "/images/7-3-1024x768.jpg",
-      "/images/2-2-768x1024.jpg",
-      "/images/4-3-768x1024.jpg",
-      "/images/6-2-1024x768.jpg",
-      "/images/8-3-768x1024.jpg"
-    ]
-  },
-  {
-    "label": "Project 11",
-    "group": "COMPLETED PROJECTS",
-    "title": "Maison Prunelle -\nDowntown",
-    "description": "A downtown project involving civil execution and finishing works, with close attention to detailing, sequencing, and final delivery.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Civil execution & Finishing"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Residential Mountain Development"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/projects/maison-prunelle/cover.webp",
-      "/images/projects/maison-prunelle/01.webp",
-      "/images/projects/maison-prunelle/02.webp",
-      "/images/projects/maison-prunelle/03.webp",
-      "/images/projects/maison-prunelle/04.webp",
-      "/images/projects/maison-prunelle/05.webp",
-      "/images/projects/maison-prunelle/06.webp",
-      "/images/projects/maison-prunelle/07.webp",
-      "/images/projects/maison-prunelle/08.webp",
-      "/images/projects/maison-prunelle/09.webp",
-      "/images/projects/maison-prunelle/10.webp"
+      "/images/8-2-768x1024.jpg"
     ]
   },
   {
@@ -828,12 +805,230 @@ export const profiles: Profile[] = [
       "/images/3-4-768x1024.jpg",
       "/images/5-4-1024x768.jpg",
       "/images/7-4-1024x768.jpg",
-      "/images/9-2-1024x768.jpg",
       "/images/2-4-1024x768.jpg",
       "/images/4-5-768x1024.jpg",
       "/images/6-4-768x1024.jpg",
-      "/images/8-4-1024x768.jpg",
-      "/images/10-2-768x1024.jpg"
+      "/images/8-4-1024x768.jpg"
+    ]
+  },
+  {
+    "label": "Project 22",
+    "group": "COMPLETED PROJECTS",
+    "title": "BRGRCo",
+    "description": "A restaurant fit-out delivered through coordinated execution, contractor follow-up, and on-site technical supervision.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Execution & Coordination"
+      },
+      {
+        "label": "Lead Oversight",
+        "value": "Konkreet by Mario Zgheib"
+      },
+      {
+        "label": "Project Type",
+        "value": "Hospitality Fit-Out"
+      },
+      {
+        "label": "Location",
+        "value": "Lebanon"
+      }
+    ],
+    "tags": [
+      "Site Supervision",
+      "Execution Follow-Up",
+      "Contractor Coordination",
+      "Quality Control"
+    ],
+    "gallery": [
+      "/images/projects/brgrco/cover.webp",
+      "/images/projects/brgrco/01.webp",
+      "/images/projects/brgrco/02.webp",
+      "/images/projects/brgrco/03.webp",
+      "/images/projects/brgrco/04.webp",
+      "/images/projects/brgrco/05.webp",
+      "/images/projects/brgrco/06.webp",
+      "/images/projects/brgrco/07.webp",
+      "/images/projects/brgrco/08.webp",
+      "/images/projects/brgrco/09.webp"
+    ]
+  },
+  {
+    "label": "Project 18",
+    "group": "COMPLETED PROJECTS",
+    "title": "Iglu Restaurant – Mzaar",
+    "description": "A loft project in Dbayeh Waterfront requiring execution management, contracting coordination, and careful supervision of finishing and delivery.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Management & Contracting"
+      },
+      {
+        "label": "Lead Oversight",
+        "value": "Konkreet by Mario Zgheib"
+      },
+      {
+        "label": "Project Type",
+        "value": "Residential Mountain Development"
+      },
+      {
+        "label": "Location",
+        "value": "Lebanon"
+      },
+      {
+        "label": "Architect",
+        "value": "Ralph Katta"
+      }
+    ],
+    "tags": [
+      "Site Supervision",
+      "Execution Follow-Up",
+      "Contractor Coordination",
+      "Quality Control"
+    ],
+    "gallery": [
+      "/images/projects/iglu/cover.webp",
+      "/images/projects/iglu/02.webp",
+      "/images/projects/iglu/03.webp",
+      "/images/projects/iglu/04.webp",
+      "/images/projects/iglu/05.webp",
+      "/images/projects/iglu/06.webp",
+      "/images/projects/iglu/07.webp",
+      "/images/projects/iglu/08.webp",
+      "/images/projects/iglu/09.webp",
+      "/images/projects/iglu/10.webp",
+      "/images/projects/iglu/11.webp"
+    ]
+  },
+  {
+    "label": "Project 19",
+    "group": "COMPLETED PROJECTS",
+    "title": "Abd El Wahab Restaurant - Faqra Club",
+    "description": "An under-construction restaurant project in Faqra Club involving execution management, coordination, and technical follow-up.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Execution & Coordination"
+      },
+      {
+        "label": "Lead Oversight",
+        "value": "Konkreet by Mario Zgheib"
+      },
+      {
+        "label": "Project Type",
+        "value": "Residential Mountain Development"
+      },
+      {
+        "label": "Location",
+        "value": "Lebanon"
+      },
+      {
+        "label": "Architect",
+        "value": "Antoine Tabet"
+      }
+    ],
+    "tags": [
+      "Site Supervision",
+      "Execution Follow-Up",
+      "Contractor Coordination",
+      "Quality Control"
+    ],
+    "gallery": [
+      "/images/projects/abd-el-wahab/cover.webp",
+      "/images/projects/abd-el-wahab/01.webp",
+      "/images/projects/abd-el-wahab/02.webp",
+      "/images/projects/abd-el-wahab/03.webp",
+      "/images/projects/abd-el-wahab/04.webp",
+      "/images/projects/abd-el-wahab/05.webp",
+      "/images/projects/abd-el-wahab/06.webp",
+      "/images/projects/abd-el-wahab/07.webp",
+      "/images/projects/abd-el-wahab/08.webp",
+      "/images/projects/abd-el-wahab/09.webp",
+      "/images/projects/abd-el-wahab/10.webp",
+      "/images/projects/abd-el-wahab/11.webp"
+    ]
+  },
+  {
+    "label": "Project 20",
+    "group": "COMPLETED PROJECTS",
+    "title": "MAIA – Faqra Club",
+    "description": "A loft project in Dbayeh Waterfront requiring execution management, contracting coordination, and careful supervision of finishing and delivery.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Execution & Coordination"
+      },
+      {
+        "label": "Lead Oversight",
+        "value": "Konkreet by Mario Zgheib"
+      },
+      {
+        "label": "Project Type",
+        "value": "Residential Mountain Development"
+      },
+      {
+        "label": "Location",
+        "value": "Lebanon"
+      },
+      {
+        "label": "Architect",
+        "value": "Antoine Tabet"
+      }
+    ],
+    "tags": [
+      "Site Supervision",
+      "Execution Follow-Up",
+      "Contractor Coordination",
+      "Quality Control"
+    ],
+    "gallery": [
+      "/images/projects/maia/cover.webp",
+      "/images/projects/maia/01.webp",
+      "/images/projects/maia/02.webp",
+      "/images/projects/maia/03.webp",
+      "/images/projects/maia/04.webp",
+      "/images/projects/maia/05.webp",
+      "/images/projects/maia/06.webp",
+      "/images/projects/maia/07.webp",
+      "/images/projects/maia/08.webp",
+      "/images/projects/maia/09.webp",
+      "/images/projects/maia/10.webp",
+      "/images/projects/maia/11.webp"
+    ]
+  },
+  {
+    "label": "Project 11",
+    "group": "COMPLETED PROJECTS",
+    "title": "Maison Prunelle -\nDowntown",
+    "description": "A downtown project involving civil execution and finishing works, with close attention to detailing, sequencing, and final delivery.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Civil execution & Finishing"
+      },
+      {
+        "label": "Lead Oversight",
+        "value": "Mario Zgheib"
+      },
+      {
+        "label": "Project Type",
+        "value": "Residential Mountain Development"
+      },
+      {
+        "label": "Location",
+        "value": "Lebanon"
+      }
+    ],
+    "tags": [
+      "Site Supervision",
+      "Execution Follow-Up",
+      "Contractor Coordination",
+      "Quality Control"
+    ],
+    "gallery": [
+      "/images/projects/maison-prunelle/08.webp",
+      "/images/projects/maison-prunelle/09.webp",
+      "/images/projects/maison-prunelle/10.webp"
     ]
   },
   {
@@ -865,23 +1060,12 @@ export const profiles: Profile[] = [
       "Contractor Coordination",
       "Quality Control"
     ],
-    "gallery": [
-      "/images/1-4-768x1024.jpg",
-      "/images/3-4-768x1024.jpg",
-      "/images/5-4-1024x768.jpg",
-      "/images/7-4-1024x768.jpg",
-      "/images/9-2-1024x768.jpg",
-      "/images/2-4-1024x768.jpg",
-      "/images/4-5-768x1024.jpg",
-      "/images/6-4-768x1024.jpg",
-      "/images/8-4-1024x768.jpg",
-      "/images/10-2-768x1024.jpg"
-    ]
+    "gallery": []
   },
   {
     "label": "Project 14",
     "group": "UNDER CONSTRUCTION PROJECTS",
-    "title": "Tilal el Aasal –\nKfardebian 13626",
+    "title": "Tilal El Aasal –\nKfardebian 13626",
     "description": "An active residential construction project requiring disciplined management, technical coordination, and controlled execution.",
     "meta": [
       {
@@ -933,7 +1117,7 @@ export const profiles: Profile[] = [
   {
     "label": "Project 15",
     "group": "UNDER CONSTRUCTION PROJECTS",
-    "title": "Tilal el Aasal –\nKfardebian 13624",
+    "title": "Tilal El Aasal –\nKfardebian 13624",
     "description": "An under-construction project focused on contracting management, site supervision, and alignment between architectural direction and execution teams.",
     "meta": [
       {
@@ -983,60 +1167,8 @@ export const profiles: Profile[] = [
   {
     "label": "Project 17",
     "group": "UNDER CONSTRUCTION PROJECTS",
-    "title": "Tilal el Aasal -\nKfardebian 6879",
+    "title": "Tilal El Aasal -\nKfardebian 6879",
     "description": "A Kfardebian construction project managed through technical oversight, contractor coordination, and execution control across active site phases.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Management & Contracting"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Konkreet by Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Residential Mountain Development"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      },
-      {
-        "label": "Developer",
-        "value": "Tony Abi Rached and Joseph Younes"
-      },
-      {
-        "label": "Architect",
-        "value": "Fadi Rouphael"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/projects/tilal-el-aasal-6879/cover.webp",
-      "/images/projects/tilal-el-aasal-6879/01.webp",
-      "/images/projects/tilal-el-aasal-6879/02.webp",
-      "/images/projects/tilal-el-aasal-6879/03.webp",
-      "/images/projects/tilal-el-aasal-6879/04.webp",
-      "/images/projects/tilal-el-aasal-6879/05.webp",
-      "/images/projects/tilal-el-aasal-6879/06.webp",
-      "/images/projects/tilal-el-aasal-6879/07.webp",
-      "/images/projects/tilal-el-aasal-6879/08.webp",
-      "/images/projects/tilal-el-aasal-6879/09.webp",
-      "/images/projects/tilal-el-aasal-6879/10.webp",
-      "/images/projects/tilal-el-aasal-6879/11.webp"
-    ]
-  },
-  {
-    "label": "Project 16",
-    "group": "UNDER CONSTRUCTION PROJECTS",
-    "title": "Tilal el Aasal -\nKfardebian 6879",
-    "description": "A loft project in Dbayeh Waterfront requiring execution management, contracting coordination, and careful supervision of finishing and delivery.",
     "meta": [
       {
         "label": "Role",
@@ -1126,228 +1258,6 @@ export const profiles: Profile[] = [
       "/images/projects/san-antonio-6507/09.webp",
       "/images/projects/san-antonio-6507/10.webp",
       "/images/projects/san-antonio-6507/11.webp"
-    ]
-  },
-  {
-    "label": "Project 18",
-    "group": "UNDER CONSTRUCTION PROJECTS",
-    "title": "Iglu Restaurant – Mzaar",
-    "description": "A loft project in Dbayeh Waterfront requiring execution management, contracting coordination, and careful supervision of finishing and delivery.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Management & Contracting"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Konkreet by Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Residential Mountain Development"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      },
-      {
-        "label": "Architect",
-        "value": "Ralph Katta"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/projects/iglu/cover.webp",
-      "/images/projects/iglu/01.webp",
-      "/images/projects/iglu/02.webp",
-      "/images/projects/iglu/03.webp",
-      "/images/projects/iglu/04.webp",
-      "/images/projects/iglu/05.webp",
-      "/images/projects/iglu/06.webp",
-      "/images/projects/iglu/07.webp",
-      "/images/projects/iglu/08.webp",
-      "/images/projects/iglu/09.webp",
-      "/images/projects/iglu/10.webp",
-      "/images/projects/iglu/11.webp"
-    ]
-  },
-  {
-    "label": "Project 19",
-    "group": "UNDER CONSTRUCTION PROJECTS",
-    "title": "Abd El Wahab Restaurant - Faqra Club",
-    "description": "An under-construction restaurant project in Faqra Club involving execution management, coordination, and technical follow-up.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Execution & Coordination"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Konkreet by Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Residential Mountain Development"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      },
-      {
-        "label": "Architect",
-        "value": "Antoine Tabet"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/projects/abd-el-wahab/cover.webp",
-      "/images/projects/abd-el-wahab/01.webp",
-      "/images/projects/abd-el-wahab/02.webp",
-      "/images/projects/abd-el-wahab/03.webp",
-      "/images/projects/abd-el-wahab/04.webp",
-      "/images/projects/abd-el-wahab/05.webp",
-      "/images/projects/abd-el-wahab/06.webp",
-      "/images/projects/abd-el-wahab/07.webp",
-      "/images/projects/abd-el-wahab/08.webp",
-      "/images/projects/abd-el-wahab/09.webp",
-      "/images/projects/abd-el-wahab/10.webp",
-      "/images/projects/abd-el-wahab/11.webp"
-    ]
-  },
-  {
-    "label": "Project 20",
-    "group": "UNDER CONSTRUCTION PROJECTS",
-    "title": "MAIA – Faqra Club",
-    "description": "A loft project in Dbayeh Waterfront requiring execution management, contracting coordination, and careful supervision of finishing and delivery.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Execution & Coordination"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Konkreet by Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Residential Mountain Development"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      },
-      {
-        "label": "Architect",
-        "value": "Antoine Tabet"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/projects/maia/cover.webp",
-      "/images/projects/maia/01.webp",
-      "/images/projects/maia/02.webp",
-      "/images/projects/maia/03.webp",
-      "/images/projects/maia/04.webp",
-      "/images/projects/maia/05.webp",
-      "/images/projects/maia/06.webp",
-      "/images/projects/maia/07.webp",
-      "/images/projects/maia/08.webp",
-      "/images/projects/maia/09.webp",
-      "/images/projects/maia/10.webp",
-      "/images/projects/maia/11.webp"
-    ]
-  },
-  {
-    "label": "Project 22",
-    "group": "COMPLETED PROJECTS",
-    "title": "BRGRCo",
-    "description": "A restaurant fit-out delivered through coordinated execution, contractor follow-up, and on-site technical supervision.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Execution & Coordination"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Konkreet by Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Hospitality Fit-Out"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/projects/brgrco/cover.webp",
-      "/images/projects/brgrco/01.webp",
-      "/images/projects/brgrco/02.webp",
-      "/images/projects/brgrco/03.webp",
-      "/images/projects/brgrco/04.webp",
-      "/images/projects/brgrco/05.webp",
-      "/images/projects/brgrco/06.webp",
-      "/images/projects/brgrco/07.webp",
-      "/images/projects/brgrco/08.webp",
-      "/images/projects/brgrco/09.webp"
-    ]
-  },
-  {
-    "label": "Project 23",
-    "group": "COMPLETED PROJECTS",
-    "title": "Downtown Apartment",
-    "description": "A Downtown residential project requiring interior execution management, contractor coordination, and supervision of finishing and delivery.",
-    "meta": [
-      {
-        "label": "Role",
-        "value": "Interior Execution & Coordination"
-      },
-      {
-        "label": "Lead Oversight",
-        "value": "Konkreet by Mario Zgheib"
-      },
-      {
-        "label": "Project Type",
-        "value": "Residential Interior"
-      },
-      {
-        "label": "Location",
-        "value": "Lebanon"
-      }
-    ],
-    "tags": [
-      "Site Supervision",
-      "Execution Follow-Up",
-      "Contractor Coordination",
-      "Quality Control"
-    ],
-    "gallery": [
-      "/images/projects/downtown-apartment/cover.webp",
-      "/images/projects/downtown-apartment/01.webp",
-      "/images/projects/downtown-apartment/02.webp",
-      "/images/projects/downtown-apartment/03.webp"
     ]
   }
 ]

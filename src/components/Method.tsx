@@ -44,7 +44,7 @@ export function Method() {
             className="bg-cover bg-center"
             style={{ width: image.width, backgroundImage: `url('${image.src}')` }}
             role="img"
-            aria-label="Konkreet project imagery"
+            aria-label={image.alt}
           />
         ))}
       </div>

@@ -1,31 +1,57 @@
 import { Eyebrow } from "./Eyebrow";
-import { projectGroups, projectsIntro, type ProjectCard } from "@/data/content";
+import {
+  profileSlug,
+  profiles,
+  projectGroups,
+  projectsIntro,
+  type ProjectCard,
+} from "@/data/content";
+
+// Only the cards that have a profile section further down the page can be
+// pressed; the "additional experience" entries have nowhere to go.
+const linkable = new Set(profiles.map((profile) => profile.title));
 
 function Card({ card }: { card: ProjectCard }) {
+  const href = linkable.has(card.title) ? `#${profileSlug(card.title)}` : null;
+
+  const body = (
+    <>
+      <h4 className="display whitespace-pre-line text-[22px] text-white transition-colors group-hover:text-copper">
+        {card.title}
+      </h4>
+      <p className="text-[12px] font-bold uppercase leading-[0.92] tracking-[0.12em] text-on-dark">
+        {card.role}
+      </p>
+    </>
+  );
+
   // Cards with an image get the dark gradient scrim; the "additional
   // experience" entries are short solid-ink bars in the source.
+  const inner = "flex flex-1 flex-col justify-end gap-5 p-5";
+  const content = href ? (
+    <a
+      href={href}
+      className={`${inner} outline-offset-[-2px] focus-visible:outline-2 focus-visible:outline-copper`}
+      aria-label={`${card.title} — see project profile`}
+    >
+      {body}
+    </a>
+  ) : (
+    <div className={inner}>{body}</div>
+  );
+
   if (!card.image) {
-    return (
-      <li className="flex min-h-[60px] flex-col justify-end gap-5 bg-ink p-5">
-        <h4 className="display whitespace-pre-line text-[22px] text-white">{card.title}</h4>
-        <p className="text-[12px] font-bold uppercase leading-[0.92] tracking-[0.12em] text-on-dark">
-          {card.role}
-        </p>
-      </li>
-    );
+    return <li className="group flex min-h-[60px] flex-col bg-ink">{content}</li>;
   }
 
   return (
     <li
-      className="flex min-h-[260px] flex-col justify-end gap-5 bg-cover bg-center p-5"
+      className="group flex min-h-[260px] flex-col bg-cover bg-center"
       style={{
         backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.69) 100%), url('${card.image}')`,
       }}
     >
-      <h4 className="display whitespace-pre-line text-[22px] text-white">{card.title}</h4>
-      <p className="text-[12px] font-bold uppercase leading-[0.92] tracking-[0.12em] text-on-dark">
-        {card.role}
-      </p>
+      {content}
     </li>
   );
 }

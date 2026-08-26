@@ -74,7 +74,7 @@ Two source behaviours worth knowing, because they are easy to "fix" by accident:
   Experience and is now a full image card. Only its cover is used — the other
   four supplied photos have nowhere to go unless it also gets a profile section.
 - **Duplicate project block.** The source contains two consecutive profiles
-  labelled "Project 17" and "Project 16", both titled *Tilal el Aasal -
+  labelled "Project 17" and "Project 16", both titled *Tilal El Aasal -
   Kfardebian 6879*, sharing the same ten photos and the same metadata but with
   different descriptions. Both are reproduced as-is, including the out-of-order
   numbering. Removing one is a content decision, not a build decision.
@@ -94,7 +94,7 @@ source files were named (`Cover`, then `Pic 1`, `Pic 2`, …).
 Galleries are **capped at 12 images**, the largest the two-column layout was
 built for — a 12-image gallery is already ~1294px tall against a ~700px spec
 card. Several folders supplied more: Faqra Club 371 (40), Faqra 9330 (25),
-Abd El Wahab (20), Iglu / Tilal el Aasal 13626 / 6879 / 9927 (16 each).
+Abd El Wahab (20), Iglu / Tilal El Aasal 13626 / 6879 / 9927 (16 each).
 Raising the cap is a one-line change, but the columns get long fast.
 
 Nine projects had no folder in the handover and still use the original site’s
@@ -109,7 +109,7 @@ need Mario’s copy to fix:
 
 - The Dbayeh loft description — *“A loft project in Dbayeh Waterfront requiring
   execution management…”* — is duplicated onto five unrelated projects:
-  Achrafieh Offices, Val De Neige, Tilal el Aasal 6879, Iglu Restaurant, MAIA.
+  Achrafieh Offices, Val De Neige, Tilal El Aasal 6879, Iglu Restaurant, MAIA.
 - **Project Type “Residential Mountain Development”** is applied to five
   restaurants: Crepaway, Achrafieh Restaurant, Iglu, Abd El Wahab, MAIA.
 - Iglu, Abd El Wahab and MAIA carry **Role: Management & Contracting** in their
