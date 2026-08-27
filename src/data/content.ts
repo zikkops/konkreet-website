@@ -424,7 +424,10 @@ export const profiles: Profile[] = [
     ],
     "gallery": [
       "/images/projects/faqra-9330/cover.webp",
-      "/images/projects/faqra-9330/01.webp"
+      "/images/projects/faqra-9330/01.webp",
+      "/images/projects/faqra-9330/12.webp",
+      "/images/projects/faqra-9330/13.webp",
+      "/images/projects/faqra-9330/14.webp"
     ]
   },
   {
@@ -1027,8 +1030,7 @@ export const profiles: Profile[] = [
     ],
     "gallery": [
       "/images/projects/maison-prunelle/08.webp",
-      "/images/projects/maison-prunelle/09.webp",
-      "/images/projects/maison-prunelle/10.webp"
+      "/images/projects/maison-prunelle/09.webp"
     ]
   },
   {
@@ -1160,8 +1162,7 @@ export const profiles: Profile[] = [
       "/images/projects/tilal-el-aasal-13624/05.webp",
       "/images/projects/tilal-el-aasal-13624/06.webp",
       "/images/projects/tilal-el-aasal-13624/07.webp",
-      "/images/projects/tilal-el-aasal-13624/08.webp",
-      "/images/projects/tilal-el-aasal-13624/09.webp"
+      "/images/projects/tilal-el-aasal-13624/08.webp"
     ]
   },
   {
