@@ -75,8 +75,9 @@ const cachedSiteContent = unstable_cache(
   },
   ["site-content"],
   // Saving in the admin panel refreshes this immediately through the tag. The
-  // time limit is a safety net for changes made outside the panel, such as a script.
-  { tags: [CONTENT_TAG], revalidate: 300 },
+  // time limit is a safety net for changes made outside the panel, such as a
+  // script writing straight to the database.
+  { tags: [CONTENT_TAG], revalidate: 60 },
 );
 
 /** What the homepage renders: the database's content, or the built-in text until it has some. */
