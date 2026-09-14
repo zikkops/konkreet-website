@@ -11,19 +11,26 @@ import {
   ProjectProfile,
 } from "@/components/ProjectProfile";
 import { ProjectsIndex } from "@/components/ProjectsIndex";
-import { profiles } from "@/data/content";
+import { getSiteContent } from "@/server/content";
 
-export default function Home() {
+export default async function Home() {
+  const content = await getSiteContent();
+  const { profiles } = content;
+
   return (
     <>
       <Header />
 
       <main className="flex-1">
-        <Hero />
-        <About />
-        <Method />
-        <Expertise />
-        <ProjectsIndex />
+        <Hero hero={content.hero} stats={content.stats} />
+        <About about={content.about} />
+        <Method method={content.method} imageBand={content.imageBand} />
+        <Expertise expertise={content.expertise} />
+        <ProjectsIndex
+          intro={content.projectsIntro}
+          groups={content.projectGroups}
+          profiles={profiles}
+        />
 
         {profiles.map((profile, index) => {
           // The first profile of each group gets the teal band; the rest
@@ -37,12 +44,12 @@ export default function Home() {
               ) : (
                 <ProfileDivider />
               )}
-              <ProjectProfile profile={profile} />
+              <ProjectProfile profile={profile} caption={content.galleryCaption} />
             </div>
           );
         })}
 
-        <Closing />
+        <Closing closing={content.closing} contact={content.contact} footer={content.footer} />
       </main>
 
       <BackToProjects />

@@ -1,8 +1,8 @@
-import Image from "next/image";
+import { CmsImage } from "./CmsImage";
 import { Eyebrow } from "./Eyebrow";
-import { about } from "@/data/content";
+import type { SiteContent } from "@/data/content";
 
-export function About() {
+export function About({ about }: Pick<SiteContent, "about">) {
   return (
     <section
       id="about"
@@ -10,23 +10,27 @@ export function About() {
     >
       {/* Both columns keep the container default 10px padding from the source. */}
       <div className="relative p-[10px] lg:w-[37%]">
-        <Image
-          src={about.primaryImage}
-          alt="Concrete pour into wall formwork on a Konkreet site"
-          width={407}
-          height={470}
-          className="h-[470px] w-full max-w-[407px] object-cover"
-        />
-        {/* Framed inset image, overlapping the lower-right of the main image. */}
-        <div className="bottom-[53px] right-0 hidden bg-white p-5 lg:absolute lg:block">
-          <Image
-            src={about.insetImage}
-            alt="Boiler room with completed pipework and plant"
-            width={244}
-            height={284}
-            className="h-[284px] w-[244px] object-cover"
+        {about.primaryImage && (
+          <CmsImage
+            src={about.primaryImage}
+            alt="Concrete pour into wall formwork on a Konkreet site"
+            width={407}
+            height={470}
+            className="h-[470px] w-full max-w-[407px] object-cover"
           />
-        </div>
+        )}
+        {/* Framed inset image, overlapping the lower-right of the main image. */}
+        {about.insetImage && (
+          <div className="bottom-[53px] right-0 hidden bg-white p-5 lg:absolute lg:block">
+            <CmsImage
+              src={about.insetImage}
+              alt="Boiler room with completed pipework and plant"
+              width={244}
+              height={284}
+              className="h-[284px] w-[244px] object-cover"
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-5 p-[10px] lg:w-[50%]">

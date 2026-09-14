@@ -1,7 +1,7 @@
 import { Eyebrow } from "./Eyebrow";
-import { expertise } from "@/data/content";
+import type { SiteContent } from "@/data/content";
 
-export function Expertise() {
+export function Expertise({ expertise }: Pick<SiteContent, "expertise">) {
   return (
     <section
       id="expertise"

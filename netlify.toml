@@ -1,0 +1,8 @@
+# Netlify picks up the Next.js plugin on its own; this pins the build command
+# and a Node version new enough for Next 16.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"

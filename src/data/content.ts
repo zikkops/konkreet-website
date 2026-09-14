@@ -1285,3 +1285,26 @@ export const footer = {
   left: 'KONKREET \u00b7 Engineering & Contracting',
   right: '7th Floor, Grey Tower, Jal El Dib, Beirut, Lebanon',
 };
+
+/**
+ * Everything the page renders, in one object. The site falls back to this
+ * until Sanity is connected, the migration script seeds Sanity from it, and
+ * the Sanity query is mapped onto the same shape.
+ */
+export const localContent = {
+  hero,
+  stats,
+  about,
+  method,
+  imageBand,
+  expertise,
+  projectsIntro,
+  projectGroups,
+  profiles,
+  galleryCaption,
+  closing,
+  contact,
+  footer,
+};
+
+export type SiteContent = typeof localContent;

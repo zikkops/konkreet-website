@@ -1,7 +1,8 @@
 import { Eyebrow } from "./Eyebrow";
-import { imageBand, method } from "@/data/content";
+import { CmsImage } from "./CmsImage";
+import type { SiteContent } from "@/data/content";
 
-export function Method() {
+export function Method({ method, imageBand }: Pick<SiteContent, "method" | "imageBand">) {
   return (
     <>
       <section
@@ -38,14 +39,18 @@ export function Method() {
 
       {/* Full-bleed image band separating method from expertise. */}
       <div className="flex h-[300px] flex-row lg:h-[500px]">
-        {imageBand.map((image) => (
-          <div
-            key={image.src}
-            className="bg-cover bg-center"
-            style={{ width: image.width, backgroundImage: `url('${image.src}')` }}
-            role="img"
-            aria-label={image.alt}
-          />
+        {imageBand.filter((image) => image.src).map((image) => (
+          <div key={image.src} className="relative" style={{ width: image.width }}>
+            <CmsImage
+              src={image.src}
+              alt={image.alt}
+              fill
+              /* The panels are flex-basis 50/30/40, so each settles at its
+                 share of 120% of the row. */
+              sizes={`${Math.round(parseInt(image.width, 10) / 1.2)}vw`}
+              className="object-cover"
+            />
+          </div>
         ))}
       </div>
     </>

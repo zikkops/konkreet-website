@@ -1,8 +1,9 @@
-import { galleryCaption, profileSlug, type Profile } from "@/data/content";
+import { CmsImage } from "./CmsImage";
+import { profileSlug, type Profile } from "@/data/content";
 import { StickyCard } from "./StickyCard";
 
 /** One project profile: a two-column photo grid on the left, the spec card on the right. */
-export function ProjectProfile({ profile }: { profile: Profile }) {
+export function ProjectProfile({ profile, caption }: { profile: Profile; caption: string }) {
   const half = Math.ceil(profile.gallery.length / 2);
   const columns = [profile.gallery.slice(0, half), profile.gallery.slice(half)];
   // Projects still waiting on photography drop the grid and give the whole
@@ -20,20 +21,22 @@ export function ProjectProfile({ profile }: { profile: Profile }) {
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className="flex flex-1 flex-col gap-[14px]">
                 {column.map((src) => (
-                  <div
-                    key={src}
-                    role="img"
-                    aria-label={`${profile.title} — site photograph`}
-                    className="min-h-[204px] bg-cover bg-center"
-                    style={{ backgroundImage: `url('${src}')` }}
-                  />
+                  <div key={src} className="relative min-h-[204px]">
+                    <CmsImage
+                      src={src}
+                      alt={`${profile.title} — site photograph`}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
                 ))}
               </div>
             ))}
           </div>
 
           <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-ink/58">
-            {galleryCaption}
+            {caption}
           </p>
         </div>
       )}
