@@ -85,6 +85,7 @@ export function ProjectList({ groupId, projects }: { groupId: string | null; pro
         {rows.map((row, index) => (
           <li
             key={row.id}
+            id={`project-${row.id}`}
             draggable={handleHeld}
             onDragStart={(event) => {
               setDragIndex(index);
@@ -100,7 +101,7 @@ export function ProjectList({ groupId, projects }: { groupId: string | null; pro
               setHandleHeld(false);
               save(rows);
             }}
-            className={`flex flex-wrap items-center gap-3 p-3 transition-colors ${
+            className={`flex scroll-mt-[80px] flex-wrap items-center gap-3 p-3 transition-colors ${
               canReorder ? "hover:bg-cream/50" : ""
             } ${dragIndex === index ? "bg-cream ring-2 ring-copper" : ""}`}
           >

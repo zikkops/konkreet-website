@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { GroupHeadingsForm } from "@/app/admin/_components/GroupHeadingsForm";
 import { ProjectList, type ProjectRow } from "@/app/admin/_components/ProjectList";
+import { ProjectSearch, type SearchItem } from "@/app/admin/_components/ProjectSearch";
 import { buttonClass, PageTitle, secondaryButtonClass } from "@/app/admin/_components/ui";
 import { requireAdmin } from "@/server/auth";
 import { readProjects, readSettings } from "@/server/content";
@@ -22,6 +23,25 @@ export default async function ProjectsPage() {
   const groupIds = new Set(groups.map((group) => group.id));
   const ungrouped = projects.filter((project) => !groupIds.has(project.groupId));
 
+  const inGroup = (groupId: string) => projects.filter((project) => project.groupId === groupId);
+
+  const searchItems: SearchItem[] = [
+    ...groups.flatMap((group) =>
+      inGroup(group.id).map((project) => ({
+        id: project.id,
+        title: project.title,
+        role: project.role,
+        group: group.heading || "Untitled group",
+      })),
+    ),
+    ...ungrouped.map((project) => ({
+      id: project.id,
+      title: project.title,
+      role: project.role,
+      group: "Not in any group",
+    })),
+  ];
+
   return (
     <>
       <PageTitle
@@ -41,6 +61,8 @@ export default async function ProjectsPage() {
         </p>
       )}
 
+      {searchItems.length > 4 && <ProjectSearch items={searchItems} />}
+
       <div className="flex flex-col gap-12">
         {groups.map((group) => (
           <section key={group.id}>
@@ -51,7 +73,7 @@ export default async function ProjectsPage() {
                   {group.profileHeading
                     ? `Cards, plus full profiles under “${group.profileHeading}”`
                     : "Cards only"}{" "}
-                  · {projects.filter((project) => project.groupId === group.id).length} projects
+                  · {inGroup(group.id).length} projects
                 </p>
               </div>
               <Link
@@ -66,10 +88,7 @@ export default async function ProjectsPage() {
               <GroupHeadingsForm group={group} />
             </div>
 
-            <ProjectList
-              groupId={group.id}
-              projects={projects.filter((project) => project.groupId === group.id).map(toRow)}
-            />
+            <ProjectList groupId={group.id} projects={inGroup(group.id).map(toRow)} />
           </section>
         ))}
 
