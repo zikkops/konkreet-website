@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { DragHandle } from "./DragHandle";
 import { ImageField } from "./ImageField";
 import { dangerButtonClass, Field, inputClass, labelClass, secondaryButtonClass } from "./ui";
 
@@ -28,7 +30,7 @@ const LABELS: Record<string, string> = {
   href: "Link (optional, e.g. tel:+96171881155 or mailto:info@konkreet.co)",
   left: "Left text",
   right: "Right text",
-  meta: "Details (e.g. Role, Developer, Architect, Location)",
+  tags: "Tags",
 };
 
 const SINGULAR: Record<string, string> = {
@@ -136,6 +138,7 @@ export function FieldEditor({ name, value, template, onChange, hideLabel }: Edit
   return label ? <Field label={label}>{control}</Field> : control;
 }
 
+/** A list whose items can be dragged by their handle, or moved with the arrows. */
 function ListEditor({
   name,
   label,
@@ -149,53 +152,82 @@ function ListEditor({
   itemTemplate: unknown;
   onChange: (value: unknown[]) => void;
 }) {
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+  // An item only becomes draggable while the pointer is held on its handle.
+  const [handleHeld, setHandleHeld] = useState(false);
+
   const singular = SINGULAR[name] ?? "item";
   const isGroup = Boolean(itemTemplate) && typeof itemTemplate === "object";
+  const canReorder = items.length > 1;
 
   const replace = (index: number, next: unknown) =>
     onChange(items.map((item, i) => (i === index ? next : item)));
-  const move = (index: number, step: number) => {
+  const move = (index: number, to: number) => {
+    if (to < 0 || to >= items.length || to === index) return;
     const next = [...items];
-    [next[index], next[index + step]] = [next[index + step], next[index]];
+    const [moved] = next.splice(index, 1);
+    next.splice(to, 0, moved);
     onChange(next);
   };
   const remove = (index: number) => onChange(items.filter((_, i) => i !== index));
 
+  const handle = () => (canReorder ? <DragHandle onHold={setHandleHeld} /> : null);
+
+  const controls = (index: number) => (
+    <div className="flex shrink-0 gap-1">
+      <button
+        type="button"
+        aria-label={`Move ${singular} up`}
+        disabled={index === 0}
+        onClick={() => move(index, index - 1)}
+        className={secondaryButtonClass}
+      >
+        ↑
+      </button>
+      <button
+        type="button"
+        aria-label={`Move ${singular} down`}
+        disabled={index === items.length - 1}
+        onClick={() => move(index, index + 1)}
+        className={secondaryButtonClass}
+      >
+        ↓
+      </button>
+      <button
+        type="button"
+        aria-label={`Remove ${singular}`}
+        onClick={() => remove(index)}
+        className={dangerButtonClass}
+      >
+        ✕
+      </button>
+    </div>
+  );
+
+  const dragProps = (index: number) => ({
+    draggable: handleHeld,
+    onDragStart: () => setDragIndex(index),
+    onDragEnter: () => {
+      if (dragIndex === null || dragIndex === index) return;
+      move(dragIndex, index);
+      setDragIndex(index);
+    },
+    onDragEnd: () => {
+      setDragIndex(null);
+      setHandleHeld(false);
+    },
+  });
+
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2" onDragOver={(event) => event.preventDefault()}>
       {label && <span className={labelClass}>{label}</span>}
+      {canReorder && (
+        <p className="text-[12px] text-ink/60">
+          Grab an item by its grip to drag it into place, or use the arrows.
+        </p>
+      )}
 
       {items.map((item, index) => {
-        const controls = (
-          <div className="flex shrink-0 gap-1">
-            <button
-              type="button"
-              aria-label={`Move ${singular} up`}
-              disabled={index === 0}
-              onClick={() => move(index, -1)}
-              className={secondaryButtonClass}
-            >
-              ↑
-            </button>
-            <button
-              type="button"
-              aria-label={`Move ${singular} down`}
-              disabled={index === items.length - 1}
-              onClick={() => move(index, 1)}
-              className={secondaryButtonClass}
-            >
-              ↓
-            </button>
-            <button
-              type="button"
-              aria-label={`Remove ${singular}`}
-              onClick={() => remove(index)}
-              className={dangerButtonClass}
-            >
-              ✕
-            </button>
-          </div>
-        );
         const editor = (
           <FieldEditor
             name={isGroup ? singular : name}
@@ -205,21 +237,28 @@ function ListEditor({
             onChange={(next) => replace(index, next)}
           />
         );
+        const highlighted = dragIndex === index ? "ring-2 ring-copper" : "";
 
         return isGroup ? (
-          <div key={index} className="flex flex-col gap-4 border border-ink/10 bg-cream/50 p-4">
+          <div
+            key={index}
+            {...dragProps(index)}
+            className={`flex flex-col gap-4 border border-ink/10 bg-cream/50 p-4 ${highlighted}`}
+          >
             <div className="flex items-center justify-between gap-2">
-              <span className="text-[13px] font-bold text-primary">
+              <span className="flex items-center gap-1 text-[13px] font-bold text-primary">
+                {handle()}
                 {capitalize(singular)} {index + 1}
               </span>
-              {controls}
+              {controls(index)}
             </div>
             {editor}
           </div>
         ) : (
-          <div key={index} className="flex items-start gap-2">
+          <div key={index} {...dragProps(index)} className={`flex items-start gap-2 ${highlighted}`}>
+            <span className="pt-2">{handle()}</span>
             <div className="flex-1">{editor}</div>
-            {controls}
+            {controls(index)}
           </div>
         );
       })}

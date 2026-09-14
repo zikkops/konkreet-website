@@ -63,7 +63,7 @@ export function ProjectEditor({
           />
         </Field>
         <ImageField
-          label="Card photo (leave empty for a plain dark card)"
+          label="Cover photo (leave empty for a plain dark card)"
           value={project.coverImage ?? ""}
           removable
           onChange={(src) => update({ coverImage: src || null })}

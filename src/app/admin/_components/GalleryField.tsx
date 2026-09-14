@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CmsImage } from "@/components/CmsImage";
+import { DragHandle } from "./DragHandle";
 import { labelClass, secondaryButtonClass } from "./ui";
 import { uploadImage } from "./uploadImage";
 
@@ -11,7 +12,7 @@ const iconButton =
 export function GalleryField({ value, onChange }: { value: string[]; onChange: (value: string[]) => void }) {
   const [progress, setProgress] = useState<string | null>(null);
   const [error, setError] = useState("");
-  const [dragging, setDragging] = useState<number | null>(null);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
 
   async function add(files: File[]) {
     setError("");
@@ -37,30 +38,34 @@ export function GalleryField({ value, onChange }: { value: string[]; onChange: (
     onChange(next);
   };
 
+  const canReorder = value.length > 1 && progress === null;
+
   return (
     <div className="flex flex-col gap-2">
       <span className={labelClass}>Gallery</span>
       <p className="text-[12px] text-ink/60">
-        Drag a photo to reorder it, or use the arrows. On the site the first half runs down the left
-        column and the rest down the right.
+        Grab a photo by its grip to drag it into place, or use the arrows. On the site the first half
+        runs down the left column and the rest down the right.
       </p>
 
       {value.length > 0 && (
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <ul
+          onDragOver={(event) => event.preventDefault()}
+          className="grid grid-cols-2 gap-3 sm:grid-cols-4"
+        >
           {value.map((src, index) => (
             <li
               key={src}
-              draggable={progress === null && value.length > 1}
-              onDragStart={() => setDragging(index)}
-              onDragOver={(event) => {
-                if (dragging === null || dragging === index) return;
-                event.preventDefault();
-                move(dragging, index);
-                setDragging(index);
+              draggable={canReorder}
+              onDragStart={() => setDragIndex(index)}
+              onDragEnter={() => {
+                if (dragIndex === null || dragIndex === index) return;
+                move(dragIndex, index);
+                setDragIndex(index);
               }}
-              onDragEnd={() => setDragging(null)}
-              className={`relative ${value.length > 1 ? "cursor-grab" : ""} ${
-                dragging === index ? "opacity-50" : ""
+              onDragEnd={() => setDragIndex(null)}
+              className={`group relative ${canReorder ? "cursor-grab active:cursor-grabbing" : ""} ${
+                dragIndex === index ? "opacity-60 ring-2 ring-copper" : ""
               }`}
             >
               <CmsImage
@@ -68,8 +73,20 @@ export function GalleryField({ value, onChange }: { value: string[]; onChange: (
                 alt={`Gallery photo ${index + 1}`}
                 width={200}
                 height={140}
+                draggable={false}
                 className="h-[140px] w-full border border-ink/10 object-cover"
               />
+
+              {canReorder && (
+                <DragHandle
+                  onHold={() => {}}
+                  className="absolute left-1 top-1 opacity-80 group-hover:opacity-100"
+                />
+              )}
+              <span className="absolute right-1 top-1 bg-white/90 px-1 text-[12px] font-bold text-ink/60">
+                {index + 1}
+              </span>
+
               <div className="absolute inset-x-1 bottom-1 flex justify-between">
                 <span className="flex gap-1">
                   <button

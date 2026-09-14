@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import { CmsImage } from "@/components/CmsImage";
 import { deleteProject, reorderProjects } from "../actions";
 import { ConfirmSubmit } from "./ConfirmSubmit";
+import { DragHandle } from "./DragHandle";
 import { dangerButtonClass, secondaryButtonClass } from "./ui";
 
 export type ProjectRow = {
@@ -19,14 +20,13 @@ const oneLine = (title: string) => title.replace(/\s+/g, " ");
 
 /**
  * The projects of one group, in the order they appear on the site. Drag a row
- * by its handle, or use the arrows — which also work by keyboard and on
- * touch screens, where dragging isn't available.
+ * by its grip, or use the arrows — which also work by keyboard and on touch
+ * screens, where dragging isn't available.
  */
 export function ProjectList({ groupId, projects }: { groupId: string | null; projects: ProjectRow[] }) {
   const [rows, setRows] = useState(projects);
   const [source, setSource] = useState(projects);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
-  // A row only becomes draggable while the pointer is held on its handle.
   const [handleHeld, setHandleHeld] = useState(false);
   const [saved, setSaved] = useState(false);
   const [pending, startTransition] = useTransition();
@@ -71,11 +71,10 @@ export function ProjectList({ groupId, projects }: { groupId: string | null; pro
   return (
     <>
       {canReorder && (
-        <p className="mb-2 flex items-center gap-2 text-[12px] text-ink/60">
-          <span aria-hidden="true">⠿</span>
-          Drag a project by its handle to reorder it, or use the arrows.
-          {pending && <span className="font-bold text-copper">Saving new order…</span>}
-          {!pending && saved && <span className="font-bold text-green-700">Order saved</span>}
+        <p className="mb-2 text-[12px] text-ink/60">
+          Grab a project by its grip to drag it into place, or use the arrows.
+          {pending && <span className="ml-2 font-bold text-copper">Saving new order…</span>}
+          {!pending && saved && <span className="ml-2 font-bold text-green-700">Order saved</span>}
         </p>
       )}
 
@@ -101,21 +100,11 @@ export function ProjectList({ groupId, projects }: { groupId: string | null; pro
               setHandleHeld(false);
               save(rows);
             }}
-            className={`flex flex-wrap items-center gap-3 p-3 ${
-              dragIndex === index ? "bg-cream ring-2 ring-copper" : ""
-            }`}
+            className={`flex flex-wrap items-center gap-3 p-3 transition-colors ${
+              canReorder ? "hover:bg-cream/50" : ""
+            } ${dragIndex === index ? "bg-cream ring-2 ring-copper" : ""}`}
           >
-            <span
-              aria-hidden="true"
-              title="Drag to reorder"
-              onMouseDown={() => setHandleHeld(true)}
-              onMouseUp={() => setHandleHeld(false)}
-              className={`select-none px-1 text-[20px] leading-none text-ink/40 ${
-                canReorder ? "cursor-grab active:cursor-grabbing" : "invisible"
-              }`}
-            >
-              ⠿
-            </span>
+            {canReorder && <DragHandle onHold={setHandleHeld} />}
             <span className="w-5 shrink-0 text-[13px] font-bold text-ink/40">{index + 1}</span>
 
             {row.coverImage ? (
