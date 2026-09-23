@@ -39,4 +39,6 @@ export const SCHEMA = [
     gallery jsonb NOT NULL DEFAULT '[]',
     updated_at timestamptz NOT NULL DEFAULT now()
   )`,
+  // Set per project when its photos are portrait rather than landscape.
+  `ALTER TABLE projects ADD COLUMN IF NOT EXISTS portrait boolean NOT NULL DEFAULT false`,
 ];

@@ -21,7 +21,14 @@ export function ProjectProfile({ profile, caption }: { profile: Profile; caption
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className="flex flex-1 flex-col gap-[14px]">
                 {column.map((src) => (
-                  <div key={src} className="relative min-h-[204px]">
+                  <div
+                    key={src}
+                    className={`relative ${
+                      // Portrait projects get frames taller than wide, so upright
+                      // photographs aren't cropped down to a letterbox.
+                      profile.portrait ? "aspect-3/4" : "min-h-[204px]"
+                    }`}
+                  >
                     <CmsImage
                       src={src}
                       alt={`${profile.title} — site photograph`}

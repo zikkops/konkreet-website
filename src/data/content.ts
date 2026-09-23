@@ -11,6 +11,8 @@ export type Profile = {
   meta: Meta[];
   tags: string[];
   gallery: string[];
+  /** Gallery photos are portrait, so their frames are taller than wide. */
+  portrait?: boolean;
 };
 
 export type ProjectCard = { title: string; role: string; image: string | null };

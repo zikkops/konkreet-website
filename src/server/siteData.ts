@@ -44,6 +44,8 @@ export type ProjectInput = {
   meta: Meta[];
   tags: string[];
   gallery: string[];
+  /** This project's photos are portrait, so give them taller frames. */
+  portrait: boolean;
 };
 
 export type ProjectRecord = ProjectInput & { id: number; position: number };
@@ -71,6 +73,7 @@ export const emptyProject = (groupId: string): ProjectInput => ({
   meta: DETAIL_LABELS.map((label) => ({ label, value: "" })),
   tags: [],
   gallery: [],
+  portrait: false,
 });
 
 /** The settings half of the page's content; the projects go through projectsFromContent. */
@@ -101,6 +104,7 @@ export function projectsFromContent(content: SiteContent, groups: GroupSettings[
         meta: profile?.meta ?? [],
         tags: profile?.tags ?? [],
         gallery: profile?.gallery ?? [],
+        portrait: false,
       };
     }),
   );
@@ -183,6 +187,7 @@ export function normalizeProject(raw: unknown): ProjectInput {
       .map((tag) => tag.trim())
       .filter(Boolean),
     gallery: strings(source.gallery).filter(isAllowedImage),
+    portrait: source.portrait === true,
   };
 }
 
@@ -199,6 +204,7 @@ export function rowToProject(row: Record<string, unknown>): ProjectRecord {
       meta: row.meta,
       tags: row.tags,
       gallery: row.gallery,
+      portrait: row.portrait,
     }),
   };
 }
@@ -239,6 +245,8 @@ export function buildSiteContent(settings: SiteSettings, projects: ProjectRecord
         meta: project.meta.filter((detail) => detail.value),
         tags: project.tags,
         gallery: project.gallery,
+        // Left off entirely when false, so the usual landscape frames stay put.
+        ...(project.portrait ? { portrait: true } : {}),
       });
     }
   }

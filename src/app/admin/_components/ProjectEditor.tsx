@@ -6,7 +6,7 @@ import { saveProject } from "../actions";
 import { FieldEditor } from "./FieldEditor";
 import { GalleryField } from "./GalleryField";
 import { ImageField } from "./ImageField";
-import { Field, inputClass, labelClass, SaveBar } from "./ui";
+import { buttonClass, Field, inputClass, labelClass, SaveBar, secondaryButtonClass } from "./ui";
 
 export function ProjectEditor({
   id,
@@ -112,6 +112,25 @@ export function ProjectEditor({
           template={[""]}
           onChange={(tags) => update({ tags: tags as string[] })}
         />
+        <div className="flex flex-col gap-2">
+          <span className={labelClass}>Photo shape</span>
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              aria-pressed={project.portrait}
+              onClick={() => update({ portrait: !project.portrait })}
+              className={project.portrait ? buttonClass : secondaryButtonClass}
+            >
+              {project.portrait ? "Portrait ✓" : "Portrait"}
+            </button>
+            <p className="text-[13px] text-ink/60">
+              {project.portrait
+                ? "This project's photos are shown in tall frames."
+                : "Turn this on when the photos are taller than they are wide, so they aren't cropped."}
+            </p>
+          </div>
+        </div>
+
         <GalleryField value={project.gallery} onChange={(gallery) => update({ gallery })} />
       </Section>
 
