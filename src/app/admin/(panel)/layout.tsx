@@ -12,11 +12,13 @@ export default async function PanelLayout({ children }: { children: React.ReactN
       ? [
           { href: "/admin", label: "Dashboard" },
           { href: "/admin/projects", label: "Projects" },
+          { href: "/admin/photos", label: "Site photos" },
           { href: "/admin/admins", label: "Users" },
           { href: "/admin/account", label: "My account" },
         ]
       : [
           { href: "/admin/projects", label: "Projects" },
+          { href: "/admin/photos", label: "Site photos" },
           { href: "/admin/account", label: "My account" },
         ];
 

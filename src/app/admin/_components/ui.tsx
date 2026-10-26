@@ -63,3 +63,15 @@ export function SaveBar({ pending, result, label }: { pending: boolean; result: 
     </div>
   );
 }
+
+export function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
+  return (
+    <section className="flex flex-col gap-5 border border-ink/10 bg-white p-5">
+      <div>
+        <h2 className="text-[20px] font-bold text-primary">{title}</h2>
+        {hint && <p className="mt-1 text-[13px] text-ink/60">{hint}</p>}
+      </div>
+      {children}
+    </section>
+  );
+}

@@ -159,6 +159,51 @@ export function normalizeSettings(raw: unknown): SiteSettings {
   return settings;
 }
 
+/** The homepage photos that don't belong to a project, as the Site photos page edits them. */
+export type SitePhotos = {
+  heroBackground: string;
+  aboutPrimary: string;
+  aboutInset: string;
+  band: { src: string; alt: string }[];
+  closingBackground: string;
+};
+
+export const sitePhotosFrom = (settings: SiteSettings): SitePhotos => ({
+  heroBackground: settings.hero.background,
+  aboutPrimary: settings.about.primaryImage,
+  aboutInset: settings.about.insetImage,
+  band: settings.imageBand.map(({ src, alt }) => ({ src, alt })),
+  closingBackground: settings.closing.background,
+});
+
+/**
+ * Puts edited photos into the settings. Photos can be replaced but not
+ * removed, so an empty or unusable one keeps what was there; the band keeps
+ * its number of photos and their widths, which the layout depends on.
+ */
+export function withSitePhotos(settings: SiteSettings, raw: unknown): SiteSettings {
+  const source = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+  const pick = (value: unknown, current: string) =>
+    typeof value === "string" && isAllowedImage(value) ? value : current;
+  const band = Array.isArray(source.band) ? (source.band as ({ src?: unknown; alt?: unknown } | null)[]) : [];
+
+  return normalizeSettings({
+    ...settings,
+    hero: { ...settings.hero, background: pick(source.heroBackground, settings.hero.background) },
+    about: {
+      ...settings.about,
+      primaryImage: pick(source.aboutPrimary, settings.about.primaryImage),
+      insetImage: pick(source.aboutInset, settings.about.insetImage),
+    },
+    imageBand: settings.imageBand.map((image, index) => ({
+      ...image,
+      src: pick(band[index]?.src, image.src),
+      alt: typeof band[index]?.alt === "string" ? band[index].alt.trim() : image.alt,
+    })),
+    closing: { ...settings.closing, background: pick(source.closingBackground, settings.closing.background) },
+  });
+}
+
 /** Coerces untrusted JSON (a form post or a database row) into a safe project. */
 export function normalizeProject(raw: unknown): ProjectInput {
   const source = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;

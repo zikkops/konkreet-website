@@ -6,7 +6,7 @@ import { saveProject } from "../actions";
 import { FieldEditor } from "./FieldEditor";
 import { GalleryField } from "./GalleryField";
 import { ImageField } from "./ImageField";
-import { buttonClass, Field, inputClass, labelClass, SaveBar, secondaryButtonClass } from "./ui";
+import { buttonClass, Field, inputClass, labelClass, SaveBar, secondaryButtonClass, Section } from "./ui";
 
 export function ProjectEditor({
   id,
@@ -136,17 +136,5 @@ export function ProjectEditor({
 
       <SaveBar pending={pending} result={result} label={id ? "Save project" : "Create project"} />
     </form>
-  );
-}
-
-function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
-  return (
-    <section className="flex flex-col gap-5 border border-ink/10 bg-white p-5">
-      <div>
-        <h2 className="text-[20px] font-bold text-primary">{title}</h2>
-        {hint && <p className="mt-1 text-[13px] text-ink/60">{hint}</p>}
-      </div>
-      {children}
-    </section>
   );
 }

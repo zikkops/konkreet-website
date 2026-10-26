@@ -16,7 +16,7 @@ import { db, insertProject, updateProject, upsertSettings } from "@/server/db";
 import { deleteImages } from "@/server/imagekit";
 import { uploadSignature } from "@/server/imagekitAuth";
 import { hashPassword, MIN_PASSWORD_LENGTH, verifyPassword } from "@/server/password";
-import { imageUrlsIn, normalizeProject, normalizeSettings } from "@/server/siteData";
+import { imageUrlsIn, normalizeProject, normalizeSettings, withSitePhotos } from "@/server/siteData";
 import type { FormResult } from "./_components/types";
 
 // Every action checks the login itself: an action is reachable by a direct
@@ -64,6 +64,19 @@ export async function logout() {
 export async function getUploadSignature() {
   await requireAdmin();
   return uploadSignature();
+}
+
+/** The homepage photos outside the projects: hero, About, the image band and the closing. */
+export async function saveSitePhotos(_: FormResult, formData: FormData): Promise<FormResult> {
+  await requireAdmin();
+  const previous = await readSettings();
+  if (!previous) return { ok: false, message: "There's no page content yet." };
+
+  await upsertSettings(db(), withSitePhotos(previous, parseJson(formData.get("data"))));
+  await deleteOrphanedImages(previous);
+  updateTag(CONTENT_TAG);
+  refresh();
+  return { ok: true, message: "Saved. The homepage shows the new photos now." };
 }
 
 // ── Projects ─────────────────────────────────────────────────────────────
