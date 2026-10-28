@@ -118,6 +118,20 @@ const isAllowedImage = (src: string) => isImageKitUrl(src) || src.startsWith("/i
 const isSafeHref = (href: string) => /^(https?:\/\/|mailto:|tel:|#)/i.test(href);
 
 /**
+ * The link a contact detail gets on its own: an email address opens a new
+ * email and a phone number dials it, so editing the number or address is
+ * enough to keep its link right. Anything else keeps the link it was given.
+ */
+function contactHref(value: string, href: string) {
+  const text = value.trim();
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)) return `mailto:${text}`;
+  if (/^\+?[\d\s().-]+$/.test(text) && text.replace(/\D/g, "").length >= 7) {
+    return `tel:${text.replace(/[^\d+]/g, "")}`;
+  }
+  return href && isSafeHref(href) ? href : "";
+}
+
+/**
  * Copies `raw` into the shape of `template`, so a field that's missing or
  * the wrong type renders as "" or [] instead of breaking the page.
  */
@@ -163,7 +177,7 @@ export function normalizeSettings(raw: unknown): SiteSettings {
   settings.imageBand = settings.imageBand.map((band) => ({ ...band, src: image(band.src) }));
   settings.contact.rows = settings.contact.rows.map((row) => ({
     ...row,
-    href: row.href && isSafeHref(row.href) ? row.href : "",
+    href: contactHref(row.value, row.href ?? ""),
   }));
   settings.groups = settings.groups.map((group) => ({ ...group, id: group.id || newId() }));
   return settings;

@@ -32,7 +32,7 @@ const LABELS: Record<string, string> = {
   alt: "Photo description (read out by screen readers)",
   width: "Width (share of the row, e.g. 50%)",
   profileHeading: "Profile band heading (leave empty to show cards only)",
-  href: "Link (optional, e.g. tel:+96171881155 or mailto:info@konkreet.co)",
+  href: "Link (optional; phone numbers and emails get theirs automatically)",
   left: "Left text",
   right: "Right text",
   tags: "Tags",

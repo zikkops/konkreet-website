@@ -32,7 +32,7 @@ const SECTIONS: { title: string; hint: string; keys: Key[] }[] = [
   },
   {
     title: "Contact and footer",
-    hint: "The closing statement over the last photo, the contact details beside it, and the footer line.",
+    hint: "The closing statement over the last photo, the contact details beside it, and the footer line. Change a phone number or email and its link updates with it.",
     keys: ["closing", "contact", "footer"],
   },
 ];
