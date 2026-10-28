@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  async redirects() {
+    // The Site photos page grew into the Homepage page.
+    return [{ source: "/admin/photos", destination: "/admin/homepage", permanent: true }];
+  },
 };
 
 export default nextConfig;

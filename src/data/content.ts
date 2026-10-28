@@ -56,7 +56,9 @@ export const about = {
     'Delivery Efficiency',
   ],
   primaryImage: '/images/about/primary.webp',
+  primaryAlt: 'Crane bucket pouring concrete into wall formwork beside an excavated rock face',
   insetImage: '/images/about/inset.webp',
+  insetAlt: 'Timber shoring and reinforcement under a curved roof slab, seen from above',
 };
 
 export const method = {

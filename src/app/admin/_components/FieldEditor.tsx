@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { DragHandle } from "./DragHandle";
-import { ImageField } from "./ImageField";
+import { ImageField, type ImageSize } from "./ImageField";
 import { dangerButtonClass, Field, inputClass, labelClass, secondaryButtonClass } from "./ui";
 
 // Edits any part of the page settings, driven by the shape of a template
@@ -22,6 +22,11 @@ const LABELS: Record<string, string> = {
   primaryImage: "Main photo",
   insetImage: "Small inset photo",
   paragraphs: "Paragraphs (the first two are shown, either side of the copper line)",
+  lead: "Paragraph under the title",
+  primaryAlt: "Main photo description (read out by screen readers)",
+  insetAlt: "Small photo description (read out by screen readers)",
+  galleryCaption: "Caption under every project's photos",
+  stats: "Numbers strip",
   background: "Background photo",
   src: "Photo",
   alt: "Photo description (read out by screen readers)",
@@ -72,9 +77,13 @@ type EditorProps = {
   template: unknown;
   onChange: (value: unknown) => void;
   hideLabel?: boolean;
+  /** Where this field sits in the edited value, e.g. "about.primaryImage" or "imageBand.0.src". */
+  path?: string;
+  /** Recommended photo sizes, keyed by path. */
+  sizes?: Record<string, ImageSize>;
 };
 
-export function FieldEditor({ name, value, template, onChange, hideLabel }: EditorProps) {
+export function FieldEditor({ name, value, template, onChange, hideLabel, path = name, sizes }: EditorProps) {
   const label = hideLabel ? null : labelFor(name);
 
   if (Array.isArray(template)) {
@@ -87,6 +96,8 @@ export function FieldEditor({ name, value, template, onChange, hideLabel }: Edit
         items={Array.isArray(value) ? value : []}
         itemTemplate={itemTemplate}
         onChange={onChange}
+        path={path}
+        sizes={sizes}
       />
     );
   }
@@ -102,6 +113,8 @@ export function FieldEditor({ name, value, template, onChange, hideLabel }: Edit
           value={current[key]}
           template={fieldTemplate}
           onChange={(next) => onChange({ ...current, [key]: next })}
+          path={`${path}.${key}`}
+          sizes={sizes}
         />
       ));
     if (!label) return <div className="flex flex-col gap-4">{fields}</div>;
@@ -115,7 +128,7 @@ export function FieldEditor({ name, value, template, onChange, hideLabel }: Edit
 
   const text = typeof value === "string" ? value : "";
   if (IMAGE_KEYS.has(name)) {
-    return <ImageField label={label ?? labelFor(name)} value={text} onChange={onChange} />;
+    return <ImageField label={label ?? labelFor(name)} value={text} onChange={onChange} size={sizes?.[path]} />;
   }
 
   const long = LONG_KEYS.has(name) || text.includes("\n") || text.length > 80;
@@ -145,12 +158,16 @@ function ListEditor({
   items,
   itemTemplate,
   onChange,
+  path,
+  sizes,
 }: {
   name: string;
   label: string | null;
   items: unknown[];
   itemTemplate: unknown;
   onChange: (value: unknown[]) => void;
+  path: string;
+  sizes?: Record<string, ImageSize>;
 }) {
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   // An item only becomes draggable while the pointer is held on its handle.
@@ -235,6 +252,8 @@ function ListEditor({
             template={itemTemplate}
             hideLabel
             onChange={(next) => replace(index, next)}
+            path={`${path}.${index}`}
+            sizes={sizes}
           />
         );
         const highlighted = dragIndex === index ? "ring-2 ring-copper" : "";

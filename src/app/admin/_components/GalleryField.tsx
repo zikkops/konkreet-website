@@ -9,7 +9,15 @@ import { uploadImage } from "./uploadImage";
 const iconButton =
   "flex size-7 items-center justify-center bg-white/90 text-[13px] font-bold text-primary hover:bg-copper hover:text-white disabled:opacity-30";
 
-export function GalleryField({ value, onChange }: { value: string[]; onChange: (value: string[]) => void }) {
+export function GalleryField({
+  value,
+  onChange,
+  sizeHint,
+}: {
+  value: string[];
+  onChange: (value: string[]) => void;
+  sizeHint?: string;
+}) {
   const [progress, setProgress] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [dragIndex, setDragIndex] = useState<number | null>(null);
@@ -47,6 +55,7 @@ export function GalleryField({ value, onChange }: { value: string[]; onChange: (
         Grab a photo by its grip to drag it into place, or use the arrows. On the site the first half
         runs down the left column and the rest down the right.
       </p>
+      {sizeHint && <p className="text-[12px] text-ink/60">{sizeHint}</p>}
 
       {value.length > 0 && (
         <ul

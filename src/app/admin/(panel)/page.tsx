@@ -22,9 +22,9 @@ export default async function DashboardPage() {
       body: `${projects.length} projects. Add, edit, reorder or remove them, with their photos and group headings.`,
     },
     {
-      href: "/admin/photos",
-      title: "Site photos",
-      body: "Replace the homepage photos that aren't part of a project: the top, About, photo strip and contact.",
+      href: "/admin/homepage",
+      title: "Homepage",
+      body: "Change any wording or photo on the homepage outside the projects, from the top of the page down to the footer.",
     },
     {
       href: "/admin/admins",

@@ -13,7 +13,7 @@ export function About({ about }: Pick<SiteContent, "about">) {
         {about.primaryImage && (
           <CmsImage
             src={about.primaryImage}
-            alt="Crane bucket pouring concrete into wall formwork beside an excavated rock face"
+            alt={about.primaryAlt}
             width={407}
             height={470}
             className="h-[470px] w-full max-w-[407px] object-cover"
@@ -24,7 +24,7 @@ export function About({ about }: Pick<SiteContent, "about">) {
           <div className="bottom-[53px] right-0 hidden bg-white p-5 lg:absolute lg:block">
             <CmsImage
               src={about.insetImage}
-              alt="Timber shoring and reinforcement under a curved roof slab, seen from above"
+              alt={about.insetAlt}
               width={244}
               height={284}
               className="h-[284px] w-[244px] object-cover"

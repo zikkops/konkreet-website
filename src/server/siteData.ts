@@ -143,7 +143,17 @@ function fill<T>(template: T, raw: unknown): T {
 
 /** Coerces untrusted JSON (a form post or a database row) into complete, safe settings. */
 export function normalizeSettings(raw: unknown): SiteSettings {
-  const settings = fill(settingsTemplate, raw);
+  const source = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+  // Fields added after the database was first filled. A page saved before
+  // they existed gets the built-in wording rather than blanks.
+  const settings = fill(settingsTemplate, {
+    ...source,
+    about: {
+      primaryAlt: settingsTemplate.about.primaryAlt,
+      insetAlt: settingsTemplate.about.insetAlt,
+      ...(source.about && typeof source.about === "object" ? source.about : {}),
+    },
+  });
   const image = (src: string) => (isAllowedImage(src) ? src : "");
 
   settings.hero.background = image(settings.hero.background);
@@ -159,50 +169,18 @@ export function normalizeSettings(raw: unknown): SiteSettings {
   return settings;
 }
 
-/** The homepage photos that don't belong to a project, as the Site photos page edits them. */
-export type SitePhotos = {
-  heroBackground: string;
-  aboutPrimary: string;
-  aboutInset: string;
-  band: { src: string; alt: string }[];
-  closingBackground: string;
-};
+/** Everything the Homepage page edits: the settings minus the project groups, which live on the Projects page. */
+export type PageContent = Omit<SiteSettings, "groups">;
 
-export const sitePhotosFrom = (settings: SiteSettings): SitePhotos => ({
-  heroBackground: settings.hero.background,
-  aboutPrimary: settings.about.primaryImage,
-  aboutInset: settings.about.insetImage,
-  band: settings.imageBand.map(({ src, alt }) => ({ src, alt })),
-  closingBackground: settings.closing.background,
-});
-
-/**
- * Puts edited photos into the settings. Photos can be replaced but not
- * removed, so an empty or unusable one keeps what was there; the band keeps
- * its number of photos and their widths, which the layout depends on.
- */
-export function withSitePhotos(settings: SiteSettings, raw: unknown): SiteSettings {
-  const source = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
-  const pick = (value: unknown, current: string) =>
-    typeof value === "string" && isAllowedImage(value) ? value : current;
-  const band = Array.isArray(source.band) ? (source.band as ({ src?: unknown; alt?: unknown } | null)[]) : [];
-
-  return normalizeSettings({
-    ...settings,
-    hero: { ...settings.hero, background: pick(source.heroBackground, settings.hero.background) },
-    about: {
-      ...settings.about,
-      primaryImage: pick(source.aboutPrimary, settings.about.primaryImage),
-      insetImage: pick(source.aboutInset, settings.about.insetImage),
-    },
-    imageBand: settings.imageBand.map((image, index) => ({
-      ...image,
-      src: pick(band[index]?.src, image.src),
-      alt: typeof band[index]?.alt === "string" ? band[index].alt.trim() : image.alt,
-    })),
-    closing: { ...settings.closing, background: pick(source.closingBackground, settings.closing.background) },
-  });
+export function pageContentFrom(settings: SiteSettings): PageContent {
+  const page: Partial<SiteSettings> = { ...settings };
+  delete page.groups;
+  return page as PageContent;
 }
+
+/** Puts an edited homepage into the settings, keeping the project groups as they are. */
+export const withPageContent = (settings: SiteSettings, raw: unknown): SiteSettings =>
+  normalizeSettings({ ...(raw && typeof raw === "object" ? raw : {}), groups: settings.groups });
 
 /** Coerces untrusted JSON (a form post or a database row) into a safe project. */
 export function normalizeProject(raw: unknown): ProjectInput {

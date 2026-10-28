@@ -66,6 +66,7 @@ export function ProjectEditor({
           label="Cover photo (leave empty for a plain dark card)"
           value={project.coverImage ?? ""}
           removable
+          size={{ width: 1200, height: 900, note: "The card crops it to fit and darkens it under the title." }}
           onChange={(src) => update({ coverImage: src || null })}
         />
       </Section>
@@ -131,7 +132,15 @@ export function ProjectEditor({
           </div>
         </div>
 
-        <GalleryField value={project.gallery} onChange={(gallery) => update({ gallery })} />
+        <GalleryField
+          value={project.gallery}
+          onChange={(gallery) => update({ gallery })}
+          sizeHint={
+            project.portrait
+              ? "Recommended: at least 900 × 1200 px each, portrait (3:4)."
+              : "Recommended: at least 1200 × 800 px each, landscape. Frames are cropped to fit, so keep the subject near the middle."
+          }
+        />
       </Section>
 
       <SaveBar pending={pending} result={result} label={id ? "Save project" : "Create project"} />
